@@ -1,0 +1,13 @@
+body {
+  background-image::url('images/background.jpg')
+  background-repeat:no-repeat;
+  background-position:bottom left;
+}
+body.intro
+{
+
+}
+body.main-function
+{
+
+}
