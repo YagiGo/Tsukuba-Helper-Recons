@@ -1,5 +1,52 @@
-extends layout
+doctype
+html(lang = "zh-CN")
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE-edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		title Tsukuba Helper
+		//Bootstrap
+		link(href="C:/workspace/Tsukuba-Helper-Recons/public/stylesheets/bootstrap.css" rel="stylesheets")
+		link(href="C:/workspace/Tsukuba-Helper-Recons/public/stylesheets/theme.css" rel="stylesheets")
+		//HTML5 shim and respond.js for IE8 support of HTML5 elements and media queries
+		//WARNING: Respond.js doesn't work if you view the page via file://
+		<!--[if lt IE9]>
+		script(src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js")
+		script(src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js")
+		<![endif]-->
 
-block content
-  h1= title
-  p Welcome to #{title}
+	body
+		nav.navbar.navbar-default
+			.container-fluid
+				.navbar-header
+					a.navbar-brand(href="#") Tsukuba Helper
+				ul.nav.navbar-nav
+					li.active : a(href="#") 简介
+					li.dropdown : a.dropdown-toggle(data-toggle="dropdown" href="#") 常用功能
+						span.caret
+						ul.dropdown-menu
+							li : a(href="#")垃圾回收日查询
+							li : a(href="#")Tsukuba Express时刻表
+							li : a(href="#")筑波大学校内公交时刻表
+							li : a(href="#")附近商家位置查询
+				ul.nav.navbar-nav.navbar-right
+					li : a(href="#")留言板
+					li : a(href="#")关于本站
+
+		.intro
+			h1.text-left Tsukuba Helper
+			p.lead 筑波生活助手旨在为筑波大学的留学生提供便民信息，例如垃圾回收日，附近商家打折信息等等
+		.main-function
+			h3 常见功能一览
+			
+
+
+
+
+
+
+
+
+
+
+
