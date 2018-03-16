@@ -1,15 +1,10 @@
 extends includes/template
-block body
-    .intro
-        h1.text-left
-            | 筑波生活助手
-            small Tsukuba Helper
-    br
-    br
-    br
-    img(src='/images/404.PNG')
-    br
-    h4 opps...您所指定的页面不存在或者已被删除
+blocks body
+    .construction-warning
+        h2
+            | 本页面将会按照时间和地点显示TX(Tsukuba Express)时刻表以及最近一班的到达时间
+            br
+            | 目前正在建设中！
     // jQuery (necessary for Bootstrap's JavaScript plugins)
     script(src='https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js')
     // Include all compiled plugins (below), or include individual files as needed

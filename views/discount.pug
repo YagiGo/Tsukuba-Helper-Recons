@@ -1,58 +1,8 @@
-doctype html
-html(lang='zh-CN')
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        // 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！
-        title Tsukuba Helper
-        // Bootstrap
-        link(href='../../public/stylesheets/bootstrap.min.css', rel='stylesheet')
-        link(href='../../public/stylesheets/theme.css', type='text/css', rel='stylesheet>')
-        // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-        // WARNING: Respond.js doesn't work if you view the page via file://
-        //if lt IE 9
-            script(src='https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js')
-            script(src='https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js')
-    body
-        nav.navbar.navbar-default
-            .container-fluid
-                .navbar-header
-                    a.navbar-brand(href='../index.html') TsukuHelper
-                ul.nav.navbar-nav
-                    li.active
-                        a(href='#') 简介
-                    li.dropdown
-                        a.dropdown-toggle(data-toggle='dropdown', href='#')
-                            | 常用功能
-                            span.caret
-                        ul.dropdown-menu
-                            li
-                                a(href='trashcheck.html') 垃圾回收日查询
-                            li
-                                a(href='txtimetable.html') Tsukuba Express时刻表
-                            li
-                                a(href='bustimetable.html') 筑波大学校内巴士时刻表
-                            li
-                                a(href='discount.html') 附件商家位置查询
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href='#') 留言板
-                    li
-                        a(href='#') 关于本站
-        .intro
-            h1.text-left
-                | 筑波生活助手
-                small Tsukuba Helper
-            p.lead 筑波生活助手旨在为筑波大学的留学生提供便民信息，例如垃圾回收日，附近商家打折信息等等
-            u
-                | 注意：
-                b 目前网站仍然处于早期开发阶段,
-                | 登载信息可能有误，请谨慎使用！
-            p
-        .construction-warning
-            h2 本页面将会显示周边商家的相关折扣信息，目前正在建设中！
-        // jQuery (necessary for Bootstrap's JavaScript plugins)
-        script(src='https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js')
-        // Include all compiled plugins (below), or include individual files as needed
-        script(src='../../public/javascripts/bootstrap.min.js')
+extends includes/template
+blocks body
+    .construction-warning
+        h2 本页面将会显示周边商家的相关折扣信息，目前正在建设中！
+    // jQuery (necessary for Bootstrap's JavaScript plugins)
+    script(src='https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js')
+    // Include all compiled plugins (below), or include individual files as needed
+    script(src='/javascripts/bootstrap.min.js')
