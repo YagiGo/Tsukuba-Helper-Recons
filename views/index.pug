@@ -6,8 +6,8 @@ html(lang = "zh-CN")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		title Tsukuba Helper
 		//Bootstrap
-		link(href="../public/stylesheets/bootstrap.min.css" rel="stylesheets")
-		link(href="../public/stylesheets/theme.css" rel="stylesheets")
+		link(href="/stylesheets/bootstrap.min.css" rel="stylesheets")
+		link(href="/stylesheets/theme.css" rel="stylesheets")
 		//HTML5 shim and respond.js for IE8 support of HTML5 elements and media queries
 		//WARNING: Respond.js doesn't work if you view the page via file://
 		<!--[if lt IE9]>
@@ -22,46 +22,46 @@ html(lang = "zh-CN")
 					a.navbar-brand(href="index.html") Tsukuba Helper
 				ul.nav.navbar-nav
 					li.active
-						a(href="introduction.html") 简介
+						a(href="introduction") 简介
 					li.dropdown
 						a.dropdown-toggle(data-toggle="dropdown" href="#")
 					|		常用功能
 					span.caret
 					ul.dropdown-menu
 						li
-							a(href="functionpages/trashcheck.html")垃圾回收日查询
+							a(href="trashcheck") 垃圾回收日查询
 						li
-							a(href="#")Tsukuba Express时刻表
+							a(href="txtimetable") Tsukuba Express时刻表
 						li
-							a(href="#")筑波大学校内公交时刻表
+							a(href="bustimetable") 筑波大学校内公交时刻表
 						li
-							a(href="#")附近商家位置查询
+							a(href="discount") 附近商家位置查询
 				ul.nav.navbar-nav.navbar-right
 					li
-						a(href="#")留言板
+						a(href="messageboard") 留言板
 					li
-						a(href="#")关于本站
+						a(href="about") 关于本站
 
 		.intro
 			h1.text-left Tsukuba Helper
 			p.lead 筑波生活助手旨在为筑波大学的留学生提供便民信息，例如垃圾回收日，附近商家打折信息等等
 		.main-function
 			h3 常见功能一览
-			a(href="functionpages/trashcheck.html")
+			a(href="trashcheck")
 				button
-					img(src="#")
-			a(href="functionpages/txtimetable.html")
+					img(src="/images/recycle_icon.png")
+			a(href="txtimetable")
 				button
-					img(src="#")
-			a(href="functionpages/bustimetable.html")
+					img(src="/images/subway.png")
+			a(href="bustimetable")
 				button
-					img(src="#")
-			a(href="functionpages/discount.html")
+					img(src="/images/bus.png")
+			a(href="discount")
 				button
-					img(src="#")
+					img(src="/images/store.png")
 		// jQuery (necessary for Bootstrap's JavaScript plugins)
 		script(src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js")
 		//Include all compiled plugins or include individual files as needed
-		script(src="../public/javascripts/bootstrap.min.js")
+		script(src="/javascripts/bootstrap.min.js")
 		
 
