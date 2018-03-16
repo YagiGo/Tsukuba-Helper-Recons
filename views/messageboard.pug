@@ -1,5 +1,9 @@
 extends includes/template
-blocks body
+block customized-stylesheets
+    link(href="/stylesheets/messageboard.css", type="text/css", rel="stylesheet")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
+    link(href="/stylesheets/commentsection.css", rel="stylesheet")
+block body
     .row
         .col-sm-6
             #tb-testimonial.testimonial.testimonial-default-filled
@@ -61,18 +65,28 @@ blocks body
                         .testimonial-writer-name Zahed Kamal
                         .testimonial-writer-designation Front End Developer
                         a.testimonial-writer-company(href='#') Touch Base Inc
+
     #message-input.col-lg-3
-        #personalinfo
-            h4 name:
-            input(name='name')
-            h4 E-mail:
-            input(name='E-mail')
-        #message
-            #edit-tool
-            #content
-                input#message-content.text-success(type='text')
-        #submit
-            button(name='Submit')
+        #user-info
+            span#user-fa
+                i.fa.fa-user
+            span(href="#")#user-name
+                | 用户名
+        .message-section
+            .tool-box
+                a(href="#")
+                    i.fa.fa-camera
+                a(href="#")
+                    i.fa.fa-pencil
+                a(href="#")
+                    i.fa.fa-map
+                a(href="#")
+                    i.fa.fa-paste
+            .input-section
+                input#message-content(type="text")
+                button#message-submit(onclick="sendMessage()") 发表
+
+
     // jQuery (necessary for Bootstrap's JavaScript plugins)
     script(src='https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js')
     // Include all compiled plugins (below), or include individual files as needed
