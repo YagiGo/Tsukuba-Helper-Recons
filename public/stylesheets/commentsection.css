@@ -1,0 +1,62 @@
+#message-input {
+    margin-top: 50px;
+    height: 500px;
+    border:1px;
+    padding: 50px;
+}
+#user-fa {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #EEEEEE;
+    background-color: #EEEEEE;
+    box-shadow: 1px 1px 5px;
+    border-radius: 18px;
+    text-align: left;
+}
+#user-fa>i {
+    font-size: 20px;
+    margin-top: 5px;
+}
+#user>a {
+    padding-top: 5px;
+    text-decoration: none;
+}
+.tool-box {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #EEEEEE;
+}
+.tool-box>a {
+    color: #000000;
+    margin: 2px;
+}
+.tool-box>a:hover {
+    color: #999999;
+    background-color: #d9edf7;
+}
+#message-content {
+    width: 500px;
+    height: 100px;
+}
+#message-submit {
+    float: left;
+}
+.div { margin-top: 25px;
+       margin-bottom: 25px;
+       width: 100%;
+       background-color: #EEEEEE;
+       border: 1px solid #EBEBEB;
+       border-radius: 25px;
+       box-shadow: 1px 1px 8px #333333;
+       color: #000000;
+       eight: auto; padding: 50px;
+}
+.h4 { width: auto;
+      font-size: 25px;
+}
+.mess { border: 1px solid #E4B9B9;
+        padding: 15px; box-shadow: 2px 2px 15px #EEEEEE;
+        font-family: "微软雅黑";
+        font-size: medium;
+}

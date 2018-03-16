@@ -2,7 +2,6 @@ extends includes/template
 block customized-stylesheets
     link(href="/stylesheets/messageboard.css", type="text/css", rel="stylesheet")
     link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
-    link(href="/stylesheets/commentsection.css", rel="stylesheet")
 block body
     .row
         .col-sm-6
@@ -66,25 +65,27 @@ block body
                         .testimonial-writer-designation Front End Developer
                         a.testimonial-writer-company(href='#') Touch Base Inc
 
-    #message-input.col-lg-3
-        #user-info
-            span#user-fa
-                i.fa.fa-user
-            span(href="#")#user-name
-                | 用户名
-        .message-section
-            .tool-box
-                a(href="#")
-                    i.fa.fa-camera
-                a(href="#")
-                    i.fa.fa-pencil
-                a(href="#")
-                    i.fa.fa-map
-                a(href="#")
-                    i.fa.fa-paste
-            .input-section
-                input#message-content(type="text")
-                button#message-submit(onclick="sendMessage()") 发表
+    .container
+        .row
+            .liuyan
+                #user
+                    span#user-fa
+                        i.fa.fa-user
+                    span#usename(href='#') Username
+                #usermessage
+                    .edit
+                        a(href='')
+                            i.fa.fa-camera
+                        a(href='')
+                            i.fa.fa-pencil
+                        a(href='')
+                            i.fa.fa-map
+                        a(href='')
+                            i.fa.fa-paste
+                    .content
+                        input#message.text-success(type='text')
+                        button#btn.btn.btn-success(onclick='sendMess()') 发表
+            #information
 
 
     // jQuery (necessary for Bootstrap's JavaScript plugins)
