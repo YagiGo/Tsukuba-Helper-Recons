@@ -16,7 +16,7 @@
 
     var app = {
         isLoading: True,
-        visableCards: {},
+        visibleCards: {},
         selectedCities: {},
         spinner: document.querySelector('.loader'), //返回文档中匹配指定的选择器组的第一个元素(使用深度优先先序遍历文档的节点 | 并且通过文档标记中的第一个元素，并按照子节点数量的顺序迭代顺序节点)。
         cardTemplate: document.querySelector('.cardTemplate'),
@@ -79,7 +79,7 @@
 
         var card = app.visibleCards[data.key];
         //what if the card does not exist? create one from the template!
-        if(!card) {
+        if (!card) {
             card = app.cardTemplate.cloneNode(true);
             card.classList.remove('cardTemplate');
             card.querySelector('.location').textContent = data.label;
@@ -89,14 +89,87 @@
         //verify that the data is newer than what already existed
         var cardLastUpdatedElem = card.querySelector('.card-last-updated');
         var cardLastUpdated = cardLastUpdatedElem.textContent;
-        if(cardLastUpdated)  {
+        if (cardLastUpdated) {
             cardLastUpdated = new Date(cardLastUpdated);
             //bail out if the card has newer data
-            if(dataLastUpdated.getTime() < cardLastUpdated.getTime()) {
+            if (dataLastUpdated.getTime() < cardLastUpdated.getTime()) {
                 return;
             }
         }
         cardLastUpdatedElem.textContent = data.created;
 
-    }
-}
+        card.querySelector('.description').textContent = current.text;
+        card.querySelector('.data').textContent = current.date;
+        card.querySelector('.current . icon').classList.add(app.getIconClass(current.code));
+        card.querySelector('.current .temperature .value').textContent = Math.round(current.temp);
+        card.querySelector('.current  .humidity').textContent = Math.round(humidity) + '%';
+        card.querySelector('.current .wind .value').textContent = Math.round(currernt.temp);
+        card.querySelector('.current .wind .direction').textContent = wind.direction;
+        card.querySelector('.current .sunrise').textContent = sunrise;
+        card.querySelector('.current .sunset').textContent = sunset;
+
+        var nextDays = card.querySelectorAll('.future .oneday');
+        var today = new Date();
+        today = today.getDate();
+        for (var i = 0; i < 7; i++) {
+            var nextDay = nextDays[i];
+            var daily = data.channel.item.forecast[i];
+            if (daily && nextDay) {
+                nextDay.querySelector('.data').textContent =
+                    app.daysofWeek[(i + today) % 7];
+                nextDay.querySelector('.icon').classList.add(app.getIconList('daily.code'));
+                nextDay.querySelector('.temp-high .value').textContent =
+                    Math.round(daily.high);
+                nextDay.querySelector('.temp-low .value').textContent =
+                    Math.round(daily.low);
+            }
+        }
+        if (app.isLOading) {
+            app.spinner.setAttribute('hidden', true);
+            app.container.removeAttribute('hidden');
+            app.isLoading = false;
+        }
+    };
+      /*****************************************************************************
+   *
+   * Methods for dealing with the model
+   *
+   ****************************************************************************/
+
+  /*
+   * Gets a forecast for a specific city and updates the card with the data.
+   * getForecast() first checks if the weather data is in the cache. If so,
+   * then it gets that data and populates the card with the cached data.
+   * Then, getForecast() goes to the network for fresh data. If the network
+   * request goes through, then the card gets updated a second time with the
+   * freshest data.
+   */
+  app.getForecast = function(key, label) {
+      var statement = 'select * from weather.forecast where woeid=' + key;
+      var url = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' +
+          statement;
+      //TODO add cache logic here
+
+      //get the latest data;
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              if (request.status === 200) {
+                  var response = JSON.parse(request.response);
+                  var results = response.query.results;
+                  results.key = key;
+                  results.label = label;
+                  results.created = response.query.created;
+                  app.updateForecastCard((results));
+              }
+          }
+          else {
+              //Use the default data 'cause there is no data sent back.
+              app.updateForecastCard(initialWeatherForecast);
+          }
+      };
+      request.open('GET', url);
+      request.send();
+  };
+
+  //Iterate all of the cards and attempt to get the latest forecast data
