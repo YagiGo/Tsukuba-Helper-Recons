@@ -22,9 +22,8 @@
         cardTemplate: document.querySelector('.cardTemplate'),
         container: document.querySelector('.main'),
         addDialog: document.querySelector('.diag-container'),
-        daysofWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', "Sat", 'Sun'0]
+        daysofWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', "Sat", 'Sun']
     };
-})
 
   /*****************************************************************************
    *
@@ -54,3 +53,50 @@
       //close the add new city dialog
       app.toggleAddDialog(false);
   });
+
+  /*****************************************************************************
+   *
+   * Methods to update/refresh the UI
+   *
+   ****************************************************************************/
+    app.toggleAndDialog = function(visible) {
+        if(visible) {
+            app.addDialog.classList.add('dialog-container--visible');
+        }
+        else {
+            app.addDialog.classList.remove('dialog-container--visible');
+        }
+    };
+
+    //update a weather card with the latest weather forecast,
+    app.updateForecastCard = function(data) {
+        var dataLastUpdated = new Date(data.created);
+        var sunrise = data.channel.astronomy.sunrise;
+        var sunset = data.channel.astronomy.sunset;
+        var current = data.channel.item.condition;
+        var humidity = data.channel.atmosphere.humidity;
+        var wind = data.channel.atmosphere.humidity;
+
+        var card = app.visibleCards[data.key];
+        //what if the card does not exist? create one from the template!
+        if(!card) {
+            card = app.cardTemplate.cloneNode(true);
+            card.classList.remove('cardTemplate');
+            card.querySelector('.location').textContent = data.label;
+            card.removeAttribute('hidden');
+            app.container.appendChild(card);
+        }
+        //verify that the data is newer than what already existed
+        var cardLastUpdatedElem = card.querySelector('.card-last-updated');
+        var cardLastUpdated = cardLastUpdatedElem.textContent;
+        if(cardLastUpdated)  {
+            cardLastUpdated = new Date(cardLastUpdated);
+            //bail out if the card has newer data
+            if(dataLastUpdated.getTime() < cardLastUpdated.getTime()) {
+                return;
+            }
+        }
+        cardLastUpdatedElem.textContent = data.created;
+
+    }
+}
