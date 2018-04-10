@@ -43,8 +43,10 @@
       var select = document.getElementById('selectCityToAdd');
       var selected = select.options[select.selectedIndex];
       var key = selected.value;
-      var label = selected.textContent
+      var label = selected.textContent;
       //TODO init the app.selectedCities array here
+
+
       app.getForecast(key, label);
       //TODO push the selected city to the array and save here
       aoo.toggleAddDialog(false);
