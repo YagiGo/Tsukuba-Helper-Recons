@@ -83,7 +83,7 @@
     app.toggleAddDialog(false);
   });
   document.getElementById('butDeleteCancel').addEventListener('click', function() {
-    app.toogleDelDialog(false);
+    app.toggleDelDialog(false);
   });
 
   /*****************************************************************************
