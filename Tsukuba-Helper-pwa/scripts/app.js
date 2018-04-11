@@ -17,7 +17,7 @@
     var app = {
         isLoading: True,
         visibleCards: {},
-        selectedCities: {},
+        selectedCities: [],
         spinner: document.querySelector('.loader'), //返回文档中匹配指定的选择器组的第一个元素(使用深度优先先序遍历文档的节点 | 并且通过文档标记中的第一个元素，并按照子节点数量的顺序迭代顺序节点)。
         cardTemplate: document.querySelector('.cardTemplate'),
         container: document.querySelector('.main'),
@@ -44,11 +44,12 @@
       var selected = select.options[select.selectedIndex];
       var key = selected.value;
       var label = selected.textContent;
-      //TODO init the app.selectedCities array here
-
-
+      if(!app.selectedCities) {
+          app.selectedCities = [];
+      }
       app.getForecast(key, label);
-      //TODO push the selected city to the array and save here
+      app.selectedCities.push({key:key, label:label});
+      app.saveSelectedCities();
       aoo.toggleAddDialog(false);
   });
   document.getElementById('butAddCancel').addEventListener('click', function() {
@@ -181,7 +182,13 @@
             app.getForecast(key);
         });
     };
-    //TODO add saveSelectedCities function here
+    //Save the selectedCities so the next time they will be displayed
+    app.saveSelectedCities = function() {
+        var selectedCities = JSON.stringify(app.selectedCities);
+        localStorage.selectedCities = selectedCities;
+    };
+
+
   app.getIconClass = function(weatherCode) {
     // Weather codes: https://developer.yahoo.com/weather/documentation.html#codes
     weatherCode = parseInt(weatherCode);
@@ -286,9 +293,26 @@
     }
   };
     // TODO uncomment line below to test app with fake data
-  app.updateForecastCard(initialWeatherForecast);
+  //app.updateForecastCard(initialWeatherForecast);
 
-  // TODO add startup code here
+  // add startup code here
+    app.selectedCities = localStorage.selectedCities;
+    if(app.selectedCities) {
+        app.selectedCitties = JSON.parse(app.selectedCities);
+        app.selectedCities.forEach(function(city) {
+            app.getForecast(city.key, city.label);
+        });
+    }
+    else {
+        //This is the first time the app is launched or the user has not
+        //chosen any city previously, either way, will show the initial data
+        app.updateForecastCard(initialWeatherForecast);
+        app.selectedCities = [
+            {key:initialWeatherForecast.key, label:initialWeatherForecast.label}
+        ];
+        app.saveSelectedCities();
+
+    }
 
   // TODO add service worker code here
 })();
