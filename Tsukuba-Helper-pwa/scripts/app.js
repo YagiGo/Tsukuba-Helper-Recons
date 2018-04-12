@@ -47,14 +47,22 @@
   });
   document.getElementById('butDelete').addEventListener('click', function() {
     //Current City list should be loaded into options
+    //Everytime you open the city list, you need to check whether it has been modified or not
+    
+    //Update: no need to get it all complicated, just delete all and then reload, it will work just fine.
       var deleteList = document.getElementById('selectCityToDelete');
+      if(deleteList.childNodes) {
+        while(deleteList.firstChild) {
+          deleteList.removeChild(deleteList.firstChild);
+        }
+      }
       app.selectedCities = JSON.parse(localStorage.selectedCities); //this is JSON, parse it before using!
       app.selectedCities.forEach(function(city) {
         var opt = document.createElement('option');
         opt.value = city.key;
         opt.innerHTML = city.label;
         deleteList.appendChild(opt)
-      });
+      }); 
     app.toggleDelDialog(true);
   });
 
@@ -76,13 +84,22 @@
   });
   document.getElementById('butDeleteCity').addEventListener('click', function() {
       //TODO Put delete logic here
-      });
+      var select = document.getElementById('selectCityToDelete');
+      var selected = select.options[select.selectedIndex];
+      var forecastCards = document.getElementsByClassName('card weather-forecast');
+      for(var i = 0; i < forecastCards.length; i++) {
+        console.log(typeof(forecastCards[i]));
+      }
+      // Seems that you need jQuery to remove certain class, but I don't really want to use jQuery at this stage
+
+    });
 
   document.getElementById('butAddCancel').addEventListener('click', function() {
     // Close the add new city dialog
     app.toggleAddDialog(false);
   });
   document.getElementById('butDeleteCancel').addEventListener('click', function() {
+    //delete all optionsS
     app.toggleDelDialog(false);
   });
 
